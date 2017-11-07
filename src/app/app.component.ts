@@ -1,5 +1,7 @@
+import * as console from 'console';
 import { Component, OnInit } from '@angular/core';
 import { Http } from "@angular/http";
+import { Item } from "./item.model";
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,9 @@ import { Http } from "@angular/http";
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  items = [];
+  items: Item[] = [];
   dataUrl = "../assets/items.json";
+  selectedItems: string[] = [];
 
   constructor(private http: Http) { }
 
@@ -16,7 +19,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.http.get(this.dataUrl).subscribe(data => {
       const dataObject = JSON.parse(data["_body"]);
-      this.items = dataObject.data;
+      dataObject.data.forEach(item => {
+        const newItem = new Item(false, item);
+        this.items.push(newItem);
+      });
     });
+  }
+
+  updateCheckedOptions(item: Item) {
+    this.selectedItems.push(item.item);
+    localStorage.setItem("selectedItems", JSON.stringify(this.selectedItems));
   }
 }
