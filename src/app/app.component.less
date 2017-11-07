@@ -1,5 +1,43 @@
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+@import "../styles/variables.less";
+
+.selection__container{
+  width: 500px;
+  margin: 50px 50%;
+  left: -250px;
+  position: relative;
+  border-radius: 0;
+  border: 1px solid @color-border-container;
+}
+
+.selection__body{
+  border-radius: 5px; 
+  border: 1px solid @color-border-body;
+  background: @color-background-body;
+  margin: 40px 15px;
+}
+
+.selection__search-input{
+  background: url(../assets/search.svg) no-repeat scroll 10px 10px;
+  background-position: 95% 50%;
+  background-color: white;
+}
+
+.selection__items-container{
+  margin-top:30px;
+  height: 150px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.selection__items-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.selection__items-container::-webkit-scrollbar-track {
+  background-color: @color-background;
+}
+
+.selection__items-container::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
 }
