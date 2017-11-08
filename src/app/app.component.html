@@ -5,16 +5,16 @@
     <div class="selection__items-container">
       <div *ngFor="let selectedItem of selectedItems; let i=index">
         <label class="selection__label" *ngIf="selectedItems">
-          <div class="selection__checkbox pull-left" [ngClass]="{'selection__checkbox--checked': selectedItem.isChecked}"></div>
+          <div class="selection__checkbox selection__checkbox--checked pull-left" [ngClass]="{'selection__checkbox--checked': selectedItem.isChecked}"></div>
           <input class="selection__checkbox" type="checkbox" [(ngModel)]="selectedItem.isChecked" (ngModelChange)="updateCheckedOptions(selectedItem,i)">
-          <div class="selection__checkbox-title pull-right" [ngClass]="{'selection__checkbox-title--checked': selectedItem.isChecked}">{{selectedItem.item}}</div>
+          <div class="selection__checkbox-title selection__checkbox-title--checked pull-right">{{selectedItem.item}}</div>
         </label>
       </div>
       <div *ngFor="let item of items| sortAndSearch:searchTerm; let i= index">
         <label class="selection__label" *ngIf="!item.isChecked">
-          <div class="selection__checkbox pull-left" [ngClass]="{'selection__checkbox--checked': item.isChecked}"></div>
+          <div class="selection__checkbox pull-left"></div>
           <input class="selection__checkbox" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item,i)">
-          <div class="selection__checkbox-title pull-right" [ngClass]="{'selection__checkbox-title--checked': item.isChecked}">{{item.item}}</div>
+          <div class="selection__checkbox-title pull-right">{{item.item}}</div>
         </label>
       </div>
     </div>
