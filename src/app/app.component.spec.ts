@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './search.pipe';
 import { AppService } from './app.service';
 import { Item } from './item.model';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { AppComponent } from './app.component';
 
@@ -33,7 +33,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    component.items = [new Item(false, "boo")];
+    component.items = [new Item(false, 'boo')];
   });
 
   it('Should create the app', () => {
