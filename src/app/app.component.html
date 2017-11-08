@@ -7,7 +7,7 @@
         <label class="selection__label">
           <div class="selection__checkbox pull-left" [ngClass]="{'selection__checkbox--checked': item.isChecked}"></div>
           <input class="selection__checkbox" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item,i)">
-          <div class="selection__checkbox-title pull-right">{{item.item}}</div>
+          <div class="selection__checkbox-title pull-right" [ngClass]="{'selection__checkbox-title--checked': item.isChecked}">{{item.item}}</div>
         </label>
       </div>
     </div>

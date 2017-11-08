@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { SearchPipe } from "./search.pipe";
-import { Http } from "@angular/http";
+import { SearchPipe } from './search.pipe';
+import { Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
 

@@ -3,5 +3,4 @@ export class Item {
         public isChecked: boolean,
         public item: string
     ) { }
-
 }
