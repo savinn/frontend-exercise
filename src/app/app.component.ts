@@ -25,14 +25,9 @@ export class AppComponent implements OnInit {
     this.appService.getItems().subscribe(data => {
       data['data'].forEach(item => {
         let newItem: Item;
-        const storedItems = JSON.parse(localStorage.getItem('selectedItems'));
         if (this.selectedItems.length) {
           const itemCheck = this.selectedItems.find(itemFromStorage => item === itemFromStorage.item);
-          if (itemCheck) {
-            newItem = new Item(true, item);
-          } else {
-            newItem = new Item(false, item);
-          }
+          newItem = itemCheck ? new Item(true, item) : new Item(false, item);
         } else {
           newItem = new Item(false, item);
         }
