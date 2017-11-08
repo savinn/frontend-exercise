@@ -10,7 +10,8 @@ import { AppService } from './app.service';
 })
 export class AppComponent implements OnInit {
   items: Item[] = [];
-  selectedItems: string[] = [];
+  selectedItems: Item[] = [];
+  searchTerm = '';
 
   constructor(public appService: AppService) { }
 
@@ -20,34 +21,43 @@ export class AppComponent implements OnInit {
   }
 
   getItems() {
+    this.getDataFromStorage();
     this.appService.getItems().subscribe(data => {
       data['data'].forEach(item => {
         let newItem: Item;
-        let storedItem: string;
         const storedItems = JSON.parse(localStorage.getItem('selectedItems'));
-        if (storedItems) {
-          storedItem = storedItems.find(itemFromStorage => item === itemFromStorage);
-        }
-        if (!storedItem) {
-          newItem = new Item(false, item);
+        if (this.selectedItems.length) {
+          const itemCheck = this.selectedItems.find(itemFromStorage => item === itemFromStorage.item);
+          if (itemCheck) {
+            newItem = new Item(true, item);
+          } else {
+            newItem = new Item(false, item);
+          }
+
         } else {
-          newItem = new Item(true, item);
+          newItem = new Item(false, item);
         }
         this.items.push(newItem);
       });
     });
   }
 
-  updateCheckedOptions(item: Item) {
+  getDataFromStorage() {
     if (localStorage.getItem('selectedItems')) {
       this.selectedItems = JSON.parse(localStorage.getItem('selectedItems'));
     }
+  }
+
+  updateCheckedOptions(item: Item, i: number) {
+    this.getDataFromStorage();
+    this.searchTerm = '';
     if (item.isChecked) {
-      this.selectedItems.push(item.item);
+      this.selectedItems.push(item);
     } else {
-      const index = this.selectedItems.indexOf(item.item);
-      if (index !== -1) {
-        this.selectedItems.splice(index, 1);
+      this.selectedItems.splice(i, 1);
+      const itemUncheck = this.items.find(currentItem => currentItem.item === item.item);
+      if (itemUncheck) {
+        itemUncheck.isChecked = false;
       }
     }
     localStorage.setItem('selectedItems', JSON.stringify(this.selectedItems));

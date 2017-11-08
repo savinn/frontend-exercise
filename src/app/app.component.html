@@ -3,8 +3,15 @@
     <h4>Productgroep</h4>
     <input type="text" class="form-control selection__search-input" [(ngModel)]="searchTerm" placeholder="Zoek op...">
     <div class="selection__items-container">
-      <div *ngFor="let item of items| sortAndSearch:searchTerm">
-        <label class="selection__label">
+      <div *ngFor="let selectedItem of selectedItems; let i=index">
+        <label class="selection__label" *ngIf="selectedItems">
+          <div class="selection__checkbox pull-left" [ngClass]="{'selection__checkbox--checked': selectedItem.isChecked}"></div>
+          <input class="selection__checkbox" type="checkbox" [(ngModel)]="selectedItem.isChecked" (ngModelChange)="updateCheckedOptions(selectedItem,i)">
+          <div class="selection__checkbox-title pull-right" [ngClass]="{'selection__checkbox-title--checked': selectedItem.isChecked}">{{selectedItem.item}}</div>
+        </label>
+      </div>
+      <div *ngFor="let item of items| sortAndSearch:searchTerm; let i= index">
+        <label class="selection__label" *ngIf="!item.isChecked">
           <div class="selection__checkbox pull-left" [ngClass]="{'selection__checkbox--checked': item.isChecked}"></div>
           <input class="selection__checkbox" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item,i)">
           <div class="selection__checkbox-title pull-right" [ngClass]="{'selection__checkbox-title--checked': item.isChecked}">{{item.item}}</div>
