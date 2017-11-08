@@ -1,12 +1,11 @@
-import * as console from 'console';
 import { Component, OnInit } from '@angular/core';
 import { Http } from "@angular/http";
 import { Item } from "./item.model";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.less"]
 })
 export class AppComponent implements OnInit {
   items: Item[] = [];
@@ -36,11 +35,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  updateCheckedOptions(item: Item) {
-    if (localStorage.getItem("selectedItems")) {
-      this.selectedItems = JSON.parse(localStorage.getItem("selectedItems"))
-    }
-    this.selectedItems.push(item.item);
+  updateCheckedOptions(item: Item, i: number) {
+    //TODO: to check localStorage
+    item.isChecked === true ? this.selectedItems.push(item.item) : this.selectedItems.splice(i, 1);
     localStorage.setItem("selectedItems", JSON.stringify(this.selectedItems));
+    console.log(this.selectedItems);
   }
 }

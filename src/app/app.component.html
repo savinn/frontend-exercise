@@ -3,8 +3,8 @@
     <h4>Productgroep</h4>
     <input type="text" class="form-control selection__search-input" [(ngModel)]="searchTerm" placeholder="Zoek op...">
     <div class="selection__items-container">
-      <div *ngFor="let item of items| sortAndSearch:searchTerm">
-        <input class="form control c-input" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item)"> {{item.item}}
+      <div *ngFor="let item of items| sortAndSearch:searchTerm;let i=index">
+        <input class="form control c-input" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item,i)"> {{item.item}}
       </div>
     </div>
   </div>
