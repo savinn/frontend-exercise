@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Http } from "@angular/http";
 import { Item } from "./item.model";
 
@@ -35,10 +35,18 @@ export class AppComponent implements OnInit {
     });
   }
 
-  updateCheckedOptions(item: Item, i: number) {
-    //TODO: to check localStorage
-    item.isChecked === true ? this.selectedItems.push(item.item) : this.selectedItems.splice(i, 1);
+  updateCheckedOptions(item: Item) {
+    if (localStorage.getItem("selectedItems")) {
+      this.selectedItems = JSON.parse(localStorage.getItem("selectedItems"));
+    }
+    if (item.isChecked) {
+      this.selectedItems.push(item.item)
+    } else {
+      let index = this.selectedItems.indexOf(item.item);
+      if (index !== -1) {
+        this.selectedItems.splice(index, 1);
+      }
+    }
     localStorage.setItem("selectedItems", JSON.stringify(this.selectedItems));
-    console.log(this.selectedItems);
   }
 }
