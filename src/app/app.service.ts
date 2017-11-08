@@ -14,6 +14,6 @@ export class AppService {
             .map(res => {
                 return res.json();
             }
-            )
+            );
     }
 }
