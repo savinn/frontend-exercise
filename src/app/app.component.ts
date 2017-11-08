@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 import { Item } from './item.model';
 import { AppService } from './app.service';
 
