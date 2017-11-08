@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test": "ng test",
+    "test": "ng test --sourcemaps=false",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
     "build": "ng build --prod --aot"

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './search.pipe';
+import {AppService} from './app.service';
 
 import { AppComponent } from './app.component';
 
@@ -16,7 +17,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

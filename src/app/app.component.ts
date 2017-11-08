@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Item } from './item.model';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit {
   items: Item[] = [];
-  dataUrl = '../assets/items.json';
   selectedItems: string[] = [];
 
-  constructor(private http: Http) { }
+  constructor(public appService: AppService) { }
 
 
   ngOnInit() {
-    this.http.get(this.dataUrl).subscribe(data => {
-      const dataObject = JSON.parse(data['_body']);
-      dataObject.data.forEach(item => {
+    this.getItems();
+  }
+
+  getItems() {
+    this.appService.getItems().subscribe(data => {
+      data['data'].forEach(item => {
         let newItem: Item;
         let storedItem: string;
         const storedItems = JSON.parse(localStorage.getItem('selectedItems'));
