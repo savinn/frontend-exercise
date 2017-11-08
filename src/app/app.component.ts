@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
           } else {
             newItem = new Item(false, item);
           }
-
         } else {
           newItem = new Item(false, item);
         }
