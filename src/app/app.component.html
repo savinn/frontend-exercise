@@ -4,8 +4,13 @@
     <input type="text" class="form-control selection__search-input" [(ngModel)]="searchTerm" placeholder="Zoek op...">
     <div class="selection__items-container">
       <div *ngFor="let item of items| sortAndSearch:searchTerm">
-        <input class="form control c-input" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item,i)"> {{item.item}}
+        <label class="selection__label">
+          <div class="selection__checkbox pull-left" [ngClass]="{'selection__checkbox--checked': item.isChecked}"></div>
+          <input class="selection__checkbox" type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="updateCheckedOptions(item,i)">
+          <div class="selection__checkbox-title pull-right">{{item.item}}</div>
+        </label>
       </div>
     </div>
+    <button type="button" class="btn btn-primary selection__submit col-md-12 col-xs-12" (click)="submitSelection()">Toepassen</button>
   </div>
 </div>

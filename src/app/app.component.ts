@@ -49,4 +49,10 @@ export class AppComponent implements OnInit {
     }
     localStorage.setItem("selectedItems", JSON.stringify(this.selectedItems));
   }
+
+  submitSelection() {
+    this.items.forEach(item => item.isChecked = false);
+    this.selectedItems = [];
+    localStorage.clear();
+  }
 }
