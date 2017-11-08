@@ -1,14 +1,14 @@
-'use strict'; // necessary for es6 output in node
+"use strict";
 
 import { browser, element, by } from 'protractor';
 
-describe('cli-quickstart App', () => {
+describe('frontend-exercise App', () => {
   beforeEach(() => {
     return browser.get('/');
   });
 
-  it('should display message saying app works', () => {
-    let pageTitle = element(by.css('app-root h1')).getText();
-    expect(pageTitle).toEqual('Welcome to My First Angular App!!');
+  it('should display title "Productgroep"', () => {
+    let pageTitle = element(by.css("app-root h4")).getText();
+    expect(pageTitle).toEqual("Productgroep");
   });
 });
