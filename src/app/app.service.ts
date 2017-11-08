@@ -9,7 +9,7 @@ export class AppService {
 
     constructor(private http: Http) { }
 
-    getItems(): Observable<string[]> {
+    getItems(): Observable<{}> {
         return this.http.get(this.dataUrl)
             .map(res => {
                 return res.json();
