@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { SearchPipe } from './search.pipe';
+import { SearchPipe } from './sortsearch.pipe';
 import { AppService } from './app.service';
 import { Item } from './item.model';
 import { Observable } from 'rxjs';
@@ -41,7 +41,7 @@ describe('AppComponent', () => {
   });
 
   it('After clicking on item expects to set item.isChecked to true', () => {
-    component.updateCheckedOptions(component.items[0]);
+    component.updateCheckedOptions(component.items[0], 0);
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.items[0].isChecked).toBe(true);
